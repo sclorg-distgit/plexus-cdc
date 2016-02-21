@@ -38,7 +38,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.0
-Release:        0.20.a14.11%{?dist}
+Release:        0.20.a14.12%{?dist}
 Epoch:          0
 Summary:        Plexus Component Descriptor Creator
 # Almost whole gleaner subpackage is ASL 2.0
@@ -55,15 +55,15 @@ BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-maven-compiler-plugin
-BuildRequires:  maven30-maven-install-plugin
-BuildRequires:  maven30-maven-jar-plugin
-BuildRequires:  maven30-maven-javadoc-plugin
-BuildRequires:  maven30-maven-resources-plugin
-BuildRequires:  maven30-maven-surefire-plugin
+BuildRequires:  %{?scl_prefix}maven-compiler-plugin
+BuildRequires:  %{?scl_prefix}maven-install-plugin
+BuildRequires:  %{?scl_prefix}maven-jar-plugin
+BuildRequires:  %{?scl_prefix}maven-javadoc-plugin
+BuildRequires:  %{?scl_prefix}maven-resources-plugin
+BuildRequires:  %{?scl_prefix}maven-surefire-plugin
 BuildRequires:  %{?scl_prefix_java_common}jdom
-BuildRequires:  maven30-plexus-utils
-BuildRequires:  maven30-maven-doxia-sitetools
+BuildRequires:  %{?scl_prefix}plexus-utils
+BuildRequires:  %{?scl_prefix}maven-doxia-sitetools
 BuildRequires:  %{?scl_prefix_java_common}qdox
 
 
@@ -83,7 +83,7 @@ Javadoc for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 cp -p %{SOURCE2} .
 
@@ -91,14 +91,14 @@ cp -p %{SOURCE2} .
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_file  : %{parent}/%{subname}
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -112,6 +112,9 @@ set -e -x
 %doc LICENSE-2.0.txt
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 0:1.0-0.20.a14.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 0:1.0-0.20.a14.11
 - maven33 rebuild
 
