@@ -38,7 +38,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.0
-Release:        0.20.a14.12%{?dist}
+Release:        0.20.a14.13%{?dist}
 Epoch:          0
 Summary:        Plexus Component Descriptor Creator
 # Almost whole gleaner subpackage is ASL 2.0
@@ -54,7 +54,7 @@ Patch0:         %{pkg_name}-qdox-1.9.patch
 BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}maven-compiler-plugin
 BuildRequires:  %{?scl_prefix}maven-install-plugin
 BuildRequires:  %{?scl_prefix}maven-jar-plugin
@@ -112,6 +112,9 @@ set -e -x
 %doc LICENSE-2.0.txt
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 0:1.0-0.20.a14.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 0:1.0-0.20.a14.12
 - maven33 rebuild #2
 
